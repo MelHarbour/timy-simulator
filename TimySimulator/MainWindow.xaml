@@ -23,7 +23,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Grid.ColumnSpan="3" Content="{Binding BibNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Grid.Column="0" Grid.Row="0" Content="{Binding BibNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding ElapsedTime}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Button Content="7" Grid.Row="1" Grid.Column="0" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="7"/>
         <Button Content="8" Grid.Row="1" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="8"/>
         <Button Content="9" Grid.Row="1" Grid.Column="2" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="9"/>

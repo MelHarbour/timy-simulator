@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace TimySimulator.ViewModel
 {
@@ -12,11 +14,30 @@ namespace TimySimulator.ViewModel
     {
         private RelayCommand<string> numberButtonCommand;
         private string bibNumber;
+        private string elapsedTime;
+        private Stopwatch stopWatch;
+        private DispatcherTimer timer;
+
+        public MainWindowViewModel()
+        {
+            timer = new DispatcherTimer();
+            timer.Tick += dispatcherTimerTick;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            stopWatch = new Stopwatch();
+            stopWatch.Start();
+            timer.Start();
+        }
 
         public string BibNumber
         {
             get { return bibNumber; }
             set { SetField(ref bibNumber, value); }
+        }
+
+        public string ElapsedTime
+        {
+            get { return elapsedTime; }
+            set { SetField(ref elapsedTime, value); }
         }
 
         public RelayCommand<string> NumberButtonCommand
@@ -32,6 +53,11 @@ namespace TimySimulator.ViewModel
         private void NumberButton(string number)
         {
             BibNumber += number;
+        }
+
+        private void dispatcherTimerTick(object sender, EventArgs e)
+        {
+            ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
