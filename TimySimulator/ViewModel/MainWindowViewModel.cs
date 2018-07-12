@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Threading;
+using Windows.UI.Xaml;
 
 namespace TimySimulator.ViewModel
 {
@@ -45,7 +45,7 @@ namespace TimySimulator.ViewModel
             get
             {
                 if (numberButtonCommand == null)
-                    numberButtonCommand = new RelayCommand<string>(param => NumberButton(param), param => true);
+                    numberButtonCommand = new RelayCommand<string>(param => NumberButton(param));
                 return numberButtonCommand;
             }
         }
@@ -55,7 +55,7 @@ namespace TimySimulator.ViewModel
             BibNumber += number;
         }
 
-        private void dispatcherTimerTick(object sender, EventArgs e)
+        private void dispatcherTimerTick(object sender, object e)
         {
             ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }

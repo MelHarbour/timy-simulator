@@ -1,22 +1,43 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimySimulator", "TimySimulator\TimySimulator.csproj", "{E62D1985-B87E-4E78-809E-65541939E033}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimySimulator", "TimySimulator\TimySimulator.csproj", "{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E62D1985-B87E-4E78-809E-65541939E033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E62D1985-B87E-4E78-809E-65541939E033}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E62D1985-B87E-4E78-809E-65541939E033}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E62D1985-B87E-4E78-809E-65541939E033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|ARM.Build.0 = Debug|ARM
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|x64.ActiveCfg = Debug|x64
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|x64.Build.0 = Debug|x64
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|x64.Deploy.0 = Debug|x64
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|x86.ActiveCfg = Debug|x86
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|x86.Build.0 = Debug|x86
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Debug|x86.Deploy.0 = Debug|x86
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|ARM.ActiveCfg = Release|ARM
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|ARM.Build.0 = Release|ARM
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|ARM.Deploy.0 = Release|ARM
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|x64.ActiveCfg = Release|x64
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|x64.Build.0 = Release|x64
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|x64.Deploy.0 = Release|x64
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|x86.ActiveCfg = Release|x86
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|x86.Build.0 = Release|x86
+		{A078201C-D8F2-4DB0-94C7-E607FC8F7C4E}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6406DC94-6505-4B73-9EE3-AB56660A702C}
 	EndGlobalSection
 EndGlobal

@@ -1,15 +1,16 @@
-﻿<Window x:Class="TimySimulator.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimySimulator"
-        xmlns:vm="clr-namespace:TimySimulator.ViewModel"
-        mc:Ignorable="d"
-        Title="Timy Simulator" Height="350" Width="525">
-    <Window.DataContext>
+﻿<Page
+    x:Class="TimySimulator.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TimySimulator"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:TimySimulator.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -23,8 +24,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Content="{Binding BibNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding ElapsedTime}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding BibNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding ElapsedTime}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Button Content="7" Grid.Row="1" Grid.Column="0" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="7"/>
         <Button Content="8" Grid.Row="1" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="8"/>
         <Button Content="9" Grid.Row="1" Grid.Column="2" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="9"/>
@@ -36,4 +37,4 @@
         <Button Content="3" Grid.Row="3" Grid.Column="2" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="3"/>
         <Button Content="0" Grid.Row="4" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="0"/>
     </Grid>
-</Window>
+</Page>

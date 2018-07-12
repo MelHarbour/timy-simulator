@@ -10,44 +10,25 @@ namespace TimySimulator.ViewModel
     public class RelayCommand<T> : ICommand
     {
         private Action<T> execute;
-        private Predicate<T> canExecute;
 
-        private event EventHandler CanExecuteChangedInternal;
+        private Func<bool> canExecute;
+
+        public event EventHandler CanExecuteChanged;
 
         public RelayCommand(Action<T> execute)
             : this(execute, null)
         {
         }
 
-        public RelayCommand(Action<T> execute, Predicate<T> canExecute)
+        public RelayCommand(Action<T> execute, Func<bool> canExecute)
         {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
-
-            if (canExecute == null)
-                throw new ArgumentNullException("canExecute");
-
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException("execute");
             this.canExecute = canExecute;
-        }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-                CanExecuteChangedInternal += value;
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-                CanExecuteChangedInternal -= value;
-            }
         }
 
         public bool CanExecute(object parameter)
         {
-            return canExecute != null && canExecute((T)parameter);
+            return canExecute == null ? true : canExecute();
         }
 
         public void Execute(object parameter)
@@ -55,90 +36,44 @@ namespace TimySimulator.ViewModel
             execute((T)parameter);
         }
 
-        public void OnCanExecuteChanged()
+        public void RaiseCanExecuteChanged()
         {
-            EventHandler handler = CanExecuteChangedInternal;
-            if (handler != null)
-                handler.Invoke(this, EventArgs.Empty);
-        }
-
-        public void Destroy()
-        {
-            canExecute = _ => false;
-            execute = _ => { return; };
-        }
-
-        private static bool DefaultCanExecute(object parameter)
-        {
-            return true;
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
     public class RelayCommand : ICommand
     {
-        private Action<object> execute;
+        private Action execute;
 
-        private Predicate<object> canExecute;
+        private Func<bool> canExecute;
 
-        private event EventHandler CanExecuteChangedInternal;
+        public event EventHandler CanExecuteChanged;
 
-        public RelayCommand(Action<object> execute)
-            : this(execute, DefaultCanExecute)
+        public RelayCommand(Action execute)
+            : this(execute, null)
         {
         }
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action execute,Func<bool> canExecute)
         {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
-
-            if (canExecute == null)
-                throw new ArgumentNullException("canExecute");
-
-            this.execute = execute;
+            this.execute = execute ?? throw new ArgumentNullException("execute");
             this.canExecute = canExecute;
         }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-                CanExecuteChangedInternal += value;
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-                CanExecuteChangedInternal -= value;
-            }
-        }
-
+        
         public bool CanExecute(object parameter)
         {
-            return canExecute != null && canExecute(parameter);
+            return canExecute == null ? true : canExecute();
         }
 
         public void Execute(object parameter)
         {
-            execute(parameter);
+            execute();
         }
 
-        public void OnCanExecuteChanged()
+        public void RaiseCanExecuteChanged()
         {
-            EventHandler handler = CanExecuteChangedInternal;
-            if (handler != null)
-                handler.Invoke(this, EventArgs.Empty);
-        }
-
-        public void Destroy()
-        {
-            canExecute = _ => false;
-            execute = _ => { return; };
-        }
-
-        private static bool DefaultCanExecute(object parameter)
-        {
-            return true;
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
