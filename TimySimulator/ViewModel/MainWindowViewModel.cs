@@ -10,7 +10,7 @@ using Windows.UI.Xaml;
 
 namespace TimySimulator.ViewModel
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         private RelayCommand<string> numberButtonCommand;
         private string bibNumber;
@@ -18,7 +18,7 @@ namespace TimySimulator.ViewModel
         private Stopwatch stopWatch;
         private DispatcherTimer timer;
 
-        public MainWindowViewModel()
+        public MainPageViewModel()
         {
             timer = new DispatcherTimer();
             timer.Tick += DispatcherTimerTick;
