@@ -21,7 +21,7 @@ namespace TimySimulator.ViewModel
         public MainWindowViewModel()
         {
             timer = new DispatcherTimer();
-            timer.Tick += dispatcherTimerTick;
+            timer.Tick += DispatcherTimerTick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -55,7 +55,7 @@ namespace TimySimulator.ViewModel
             BibNumber += number;
         }
 
-        private void dispatcherTimerTick(object sender, object e)
+        private void DispatcherTimerTick(object sender, object e)
         {
             ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }
