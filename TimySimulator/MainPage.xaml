@@ -26,15 +26,15 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding BibNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding ElapsedTime}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="7" Grid.Row="1" Grid.Column="0" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="7"/>
-        <Button Content="8" Grid.Row="1" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="8"/>
-        <Button Content="9" Grid.Row="1" Grid.Column="2" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="9"/>
-        <Button Content="4" Grid.Row="2" Grid.Column="0" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="4"/>
-        <Button Content="5" Grid.Row="2" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="5"/>
-        <Button Content="6" Grid.Row="2" Grid.Column="2" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="6"/>
-        <Button Content="1" Grid.Row="3" Grid.Column="0" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="1"/>
-        <Button Content="2" Grid.Row="3" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="2"/>
-        <Button Content="3" Grid.Row="3" Grid.Column="2" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="3"/>
-        <Button Content="0" Grid.Row="4" Grid.Column="1" Width="50" Height="50" Command="{Binding NumberButtonCommand}" CommandParameter="0"/>
+        <Button Content="7" Grid.Row="1" Grid.Column="0" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="8" Grid.Row="1" Grid.Column="1" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="9" Grid.Row="1" Grid.Column="2" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="4" Grid.Row="2" Grid.Column="0" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="5" Grid.Row="2" Grid.Column="1" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="6" Grid.Row="2" Grid.Column="2" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="1" Grid.Row="3" Grid.Column="0" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="2" Grid.Row="3" Grid.Column="1" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="3" Grid.Row="3" Grid.Column="2" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="0" Grid.Row="4" Grid.Column="1" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>
