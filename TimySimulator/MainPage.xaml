@@ -11,6 +11,22 @@
     <Page.DataContext>
         <vm:MainPageViewModel/>
     </Page.DataContext>
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Setter Property="Height" Value="64"/>
+            <Setter Property="Width" Value="64"/>
+            <Setter Property="Grid.ColumnSpan" Value="4"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" x:Key="MiniButton">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Width" Value="64"/>
+            <Setter Property="Grid.ColumnSpan" Value="3"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
     <Grid Background="DarkSlateGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -38,21 +54,21 @@
             <TextBlock Text="{Binding BibNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Courier New" />
             <TextBlock Text="{Binding ElapsedTime}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Courier New" />
         </StackPanel>
-        <Button Content="2nd" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Width="64" Height="32" Background="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="=" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Width="64" Height="32" Background="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="V" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="3" Width="64" Height="32" Background="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="CLR" Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="3" Width="64" Height="32" Background="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="7" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="7" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="8" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="8" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="9" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="9" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="4" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="4" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="5" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="5" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="6" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="6" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="1" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="1" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="2" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="2" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="3" Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="3" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="OK" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGreen"/>
-        <Button Content="0" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="4" Width="64" Height="64" Command="{Binding NumberButtonCommand}" CommandParameter="0" Background="Yellow" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="OK" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="4" Width="64" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red"/>
+        <Button Content="2nd" Grid.Row="1" Grid.Column="0" Style="{StaticResource MiniButton}" Background="LightGray" />
+        <Button Content="=" Grid.Row="1" Grid.Column="3" Style="{StaticResource MiniButton}" Background="LightGray" />
+        <Button Content="V" Grid.Row="1" Grid.Column="6" Style="{StaticResource MiniButton}" Background="LightGray" />
+        <Button Content="CLR" Grid.Row="1" Grid.Column="9" Style="{StaticResource MiniButton}" Background="LightGray" />
+        <Button Content="7" Grid.Row="2" Grid.Column="0" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="7" Background="Yellow"/>
+        <Button Content="8" Grid.Row="2" Grid.Column="4" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="8" Background="Yellow"/>
+        <Button Content="9" Grid.Row="2" Grid.Column="8" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="9" Background="Yellow"/>
+        <Button Content="4" Grid.Row="3" Grid.Column="0" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="4" Background="Yellow"/>
+        <Button Content="5" Grid.Row="3" Grid.Column="4" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="5" Background="Yellow"/>
+        <Button Content="6" Grid.Row="3" Grid.Column="8" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="6" Background="Yellow"/>
+        <Button Content="1" Grid.Row="4" Grid.Column="0" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="1" Background="Yellow"/>
+        <Button Content="2" Grid.Row="4" Grid.Column="4" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="2" Background="Yellow"/>
+        <Button Content="3" Grid.Row="4" Grid.Column="8" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="3" Background="Yellow"/>
+        <Button Content="OK" Grid.Row="5" Grid.Column="0" Style="{StaticResource RoundButton}" Background="LightGreen"/>
+        <Button Content="0" Grid.Row="5" Grid.Column="4" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="0" Background="Yellow"/>
+        <Button Content="OK" Grid.Row="5" Grid.Column="8" Style="{StaticResource RoundButton}" Background="Red"/>
     </Grid>
 </Page>
