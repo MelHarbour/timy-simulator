@@ -15,5 +15,6 @@ namespace TimySimulator.ViewModel
         public bool IsManuallyChangedTime { get; set; }
         public bool IsOverwrittenBibNumber { get; set; }
         public bool IsManualTime { get; set; }
+        public bool IsSaved { get; set; }
     }
 }

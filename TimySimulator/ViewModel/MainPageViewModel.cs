@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -14,6 +15,7 @@ namespace TimySimulator.ViewModel
         private string elapsedTime;
         private Stopwatch stopWatch;
         private DispatcherTimer timer;
+        private ObservableCollection<Result> results;
 
         public MainPageViewModel()
         {
@@ -35,6 +37,15 @@ namespace TimySimulator.ViewModel
         {
             get { return elapsedTime; }
             set { SetField(ref elapsedTime, value); }
+        }
+
+        public ObservableCollection<Result> Results {
+            get
+            {
+                if (results == null)
+                    results = new ObservableCollection<Result>();
+                return results;
+            }
         }
 
         public RelayCommand<string> NumberButtonCommand
