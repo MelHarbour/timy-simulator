@@ -12,6 +12,8 @@ namespace TimySimulator.ViewModel
     {
         private RelayCommand<string> numberButtonCommand;
         private RelayCommand modeButtonCommand;
+        private RelayCommand startButtonCommand;
+        private RelayCommand stopButtonCommand;
         private string bibNumber;
         private string elapsedTime;
         private Stopwatch stopWatch;
@@ -89,6 +91,37 @@ namespace TimySimulator.ViewModel
                     modeButtonCommand = new RelayCommand(param => ModeButton(), param => true);
                 return modeButtonCommand;
             }
+        }
+
+        public RelayCommand StartButtonCommand
+        {
+            get
+            {
+                if (startButtonCommand == null)
+                    startButtonCommand = new RelayCommand(param => Impulse(0), param => true);
+                return startButtonCommand;
+            }
+        }
+
+        public RelayCommand StopButtonCommand
+        {
+            get
+            {
+                if (stopButtonCommand == null)
+                    stopButtonCommand = new RelayCommand(param => Impulse(1), param => true);
+                return stopButtonCommand;
+            }
+        }
+
+        private void Impulse(int channel)
+        {
+            Results.Add(new Result
+            {
+                BibNumber = 1,
+                Channel = channel,
+                Time = stopWatch.Elapsed,
+                IsManualTime = true
+            });
         }
 
         private void NumberButton(string number)
