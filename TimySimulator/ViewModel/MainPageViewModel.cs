@@ -11,11 +11,13 @@ namespace TimySimulator.ViewModel
     public class MainPageViewModel : INotifyPropertyChanged
     {
         private RelayCommand<string> numberButtonCommand;
+        private RelayCommand modeButtonCommand;
         private string bibNumber;
         private string elapsedTime;
         private Stopwatch stopWatch;
         private DispatcherTimer timer;
         private ObservableCollection<Result> results;
+        private TimyMode mode;
 
         public MainPageViewModel()
         {
@@ -48,6 +50,27 @@ namespace TimySimulator.ViewModel
             }
         }
 
+        public TimyMode Mode
+        {
+            get { return mode; }
+            set
+            {
+                SetField(ref mode, value);
+                OnPropertyChanged("ModeText");
+            }
+        }
+
+        public string ModeText
+        {
+            get
+            {
+                if (Mode == TimyMode.Memory)
+                    return "NORM";
+                else
+                    return "MEMO";
+            }
+        }
+
         public RelayCommand<string> NumberButtonCommand
         {
             get
@@ -58,14 +81,32 @@ namespace TimySimulator.ViewModel
             }
         }
 
+        public RelayCommand ModeButtonCommand
+        {
+            get
+            {
+                if (modeButtonCommand == null)
+                    modeButtonCommand = new RelayCommand(param => ModeButton(), param => true);
+                return modeButtonCommand;
+            }
+        }
+
         private void NumberButton(string number)
         {
             BibNumber += number;
         }
 
+        private void ModeButton()
+        {
+            if (Mode == TimyMode.Memory)
+                Mode = TimyMode.Normal;
+            else
+                Mode = TimyMode.Memory;
+        }
+
         private void DispatcherTimerTick(object sender, object e)
         {
-            ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
+            ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.f");
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -82,5 +123,11 @@ namespace TimySimulator.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public enum TimyMode
+    {
+        Normal,
+        Memory
     }
 }

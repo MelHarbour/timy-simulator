@@ -40,18 +40,18 @@ namespace TimySimulator.ViewModel
 
     public class RelayCommand : ICommand
     {
-        private Action execute;
+        private Action<object> execute;
 
-        private Func<bool> canExecute;
+        private Predicate<object> canExecute;
 
         public event EventHandler CanExecuteChanged;
 
-        public RelayCommand(Action execute)
+        public RelayCommand(Action<object> execute)
             : this(execute, null)
         {
         }
 
-        public RelayCommand(Action execute,Func<bool> canExecute)
+        public RelayCommand(Action<object> execute,Predicate<object> canExecute)
         {
             this.execute = execute ?? throw new ArgumentNullException("execute");
             this.canExecute = canExecute;
@@ -59,12 +59,12 @@ namespace TimySimulator.ViewModel
         
         public bool CanExecute(object parameter)
         {
-            return canExecute == null ? true : canExecute();
+            return canExecute == null ? true : canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            execute();
+            execute(parameter);
         }
 
         public void RaiseCanExecuteChanged()
