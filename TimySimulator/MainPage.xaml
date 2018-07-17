@@ -13,12 +13,14 @@
         <vm:MainPageViewModel/>
     </Page.DataContext>
     <Page.Resources>
-        <Style TargetType="Button" x:Key="RoundButton">
+        <Style TargetType="Button" x:Key="BaseButtonStyle">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" x:Key="RoundButton" BasedOn="{StaticResource BaseButtonStyle}">
             <Setter Property="Height" Value="64"/>
             <Setter Property="Width" Value="64"/>
             <Setter Property="Grid.ColumnSpan" Value="4"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -35,12 +37,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Button" x:Key="MiniButton">
+        <Style TargetType="Button" x:Key="MiniButton" BasedOn="{StaticResource BaseButtonStyle}">
             <Setter Property="Height" Value="32"/>
             <Setter Property="Width" Value="64"/>
             <Setter Property="Grid.ColumnSpan" Value="3"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Background" Value="LightGray"/>
         </Style>
         <Style TargetType="TextBlock">
@@ -111,8 +111,8 @@
         <Button Content="F1" Grid.Row="1" Grid.Column="3" Style="{StaticResource MiniButton}"/>
         <Button Content="F2" Grid.Row="1" Grid.Column="6" Style="{StaticResource MiniButton}"/>
         <Button Content="F3" Grid.Row="1" Grid.Column="9" Style="{StaticResource MiniButton}"/>
-        <Button Content="START" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Command="{Binding StartButtonCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGreen"/>
-        <Button Content="STOP" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="5" Command="{Binding StopButtonCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Red"/>
+        <Button Content="START" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Command="{Binding StartButtonCommand}" Style="{StaticResource BaseButtonStyle}" Background="LightGreen"/>
+        <Button Content="STOP" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="5" Command="{Binding StopButtonCommand}" Style="{StaticResource BaseButtonStyle}" Background="Red"/>
         <Button Content="2nd" Grid.Row="3" Grid.Column="0" Style="{StaticResource MiniButton}"/>
         <Button Content="=" Grid.Row="3" Grid.Column="3" Style="{StaticResource MiniButton}"/>
         <Button Content="V" Grid.Row="3" Grid.Column="6" Style="{StaticResource MiniButton}"/>
