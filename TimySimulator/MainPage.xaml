@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:TimySimulator.ViewModel"
+    xmlns:c="using:TimySimulator.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
@@ -47,6 +48,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Courier New"/>
         </Style>
+        <c:ManualBooleanConverter x:Key="ManualBooleanConverter"/>
     </Page.Resources>
     <Grid Background="DarkSlateGray">
         <Grid.ColumnDefinitions>
@@ -86,7 +88,19 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0"  Text="{Binding BibNumber}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding ElapsedTime}" />
-                
+                <ItemsControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Results}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Courier New" Text=" "/>
+                                <TextBlock FontFamily="Courier New" Text="{Binding BibNumber}" Padding="8,0,8,0"/>
+                                <TextBlock FontFamily="Courier New" Text="{Binding Channel}"/>
+                                <TextBlock FontFamily="Courier New" Text="{Binding IsManualTime, Converter={StaticResource ManualBooleanConverter}}"/>
+                                <TextBlock FontFamily="Courier New" Text="{Binding Time}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ModeText}"/>
                 <TextBlock Grid.Row="2" Grid.Column="1" Text="STN"/>
                 <TextBlock Grid.Row="2" Grid.Column="2" Text="TIME"/>
