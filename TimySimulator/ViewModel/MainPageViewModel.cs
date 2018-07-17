@@ -14,7 +14,7 @@ namespace TimySimulator.ViewModel
         private RelayCommand modeButtonCommand;
         private RelayCommand startButtonCommand;
         private RelayCommand stopButtonCommand;
-        private string bibNumber;
+        private string bibNumber = "1";
         private string elapsedTime;
         private Stopwatch stopWatch;
         private DispatcherTimer timer;
@@ -117,7 +117,7 @@ namespace TimySimulator.ViewModel
         {
             Results.Add(new Result
             {
-                BibNumber = 1,
+                BibNumber = Int32.Parse(BibNumber),
                 Channel = channel,
                 Time = stopWatch.Elapsed,
                 IsManualTime = true
