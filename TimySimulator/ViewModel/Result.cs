@@ -8,6 +8,7 @@ namespace TimySimulator.ViewModel
 {
     public class Result
     {
+        public int ResultId { get; set; }
         public int BibNumber { get; set; }
         public TimeSpan Time { get; set; }
         public int Channel { get; set; }

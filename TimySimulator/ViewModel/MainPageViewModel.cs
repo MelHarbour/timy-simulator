@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 
@@ -49,6 +50,14 @@ namespace TimySimulator.ViewModel
                 if (results == null)
                     results = new ObservableCollection<Result>();
                 return results;
+            }
+        }
+
+        public ObservableCollection<Result> DisplayResults
+        {
+            get
+            {
+                return new ObservableCollection<Result>(Results.OrderBy(x => x.ResultId));
             }
         }
 
@@ -122,6 +131,7 @@ namespace TimySimulator.ViewModel
                 Time = stopWatch.Elapsed,
                 IsManualTime = true
             });
+            OnPropertyChanged("DisplayResults");
         }
 
         private void NumberButton(string number)
