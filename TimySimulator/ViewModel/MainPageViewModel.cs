@@ -17,8 +17,8 @@ namespace TimySimulator.ViewModel
         private Lazy<RelayCommand> stopButtonCommand;
         private string bibNumber = "1";
         private string elapsedTime;
-        private Stopwatch stopWatch;
-        private DispatcherTimer timer;
+        private Stopwatch stopWatch = new Stopwatch();
+        private DispatcherTimer timer = new DispatcherTimer();
         private Lazy<ObservableCollection<Result>> results = new Lazy<ObservableCollection<Result>>();
         private TimyMode mode;
 
@@ -28,10 +28,8 @@ namespace TimySimulator.ViewModel
             modeButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => ModeButton(), param => true));
             startButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(0), param => true));
             stopButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(1), param => true));
-            timer = new DispatcherTimer();
             timer.Tick += DispatcherTimerTick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            stopWatch = new Stopwatch();
             stopWatch.Start();
             timer.Start();
         }
