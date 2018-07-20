@@ -11,10 +11,10 @@ namespace TimySimulator.ViewModel
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        private RelayCommand<string> numberButtonCommand;
-        private RelayCommand modeButtonCommand;
-        private RelayCommand startButtonCommand;
-        private RelayCommand stopButtonCommand;
+        private Lazy<RelayCommand<string>> numberButtonCommand;
+        private Lazy<RelayCommand> modeButtonCommand;
+        private Lazy<RelayCommand> startButtonCommand;
+        private Lazy<RelayCommand> stopButtonCommand;
         private string bibNumber = "1";
         private string elapsedTime;
         private Stopwatch stopWatch;
@@ -24,6 +24,10 @@ namespace TimySimulator.ViewModel
 
         public MainPageViewModel()
         {
+            numberButtonCommand = new Lazy<RelayCommand<string>>(() => new RelayCommand<string>(param => NumberButton(param)));
+            modeButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => ModeButton(), param => true));
+            startButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(0), param => true));
+            stopButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(1), param => true));
             timer = new DispatcherTimer();
             timer.Tick += DispatcherTimerTick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -79,42 +83,22 @@ namespace TimySimulator.ViewModel
 
         public RelayCommand<string> NumberButtonCommand
         {
-            get
-            {
-                if (numberButtonCommand == null)
-                    numberButtonCommand = new RelayCommand<string>(param => NumberButton(param));
-                return numberButtonCommand;
-            }
+            get { return numberButtonCommand.Value; }
         }
 
         public RelayCommand ModeButtonCommand
         {
-            get
-            {
-                if (modeButtonCommand == null)
-                    modeButtonCommand = new RelayCommand(param => ModeButton(), param => true);
-                return modeButtonCommand;
-            }
+            get { return modeButtonCommand.Value; }
         }
 
         public RelayCommand StartButtonCommand
         {
-            get
-            {
-                if (startButtonCommand == null)
-                    startButtonCommand = new RelayCommand(param => Impulse(0), param => true);
-                return startButtonCommand;
-            }
+            get { return startButtonCommand.Value; }
         }
 
         public RelayCommand StopButtonCommand
         {
-            get
-            {
-                if (stopButtonCommand == null)
-                    stopButtonCommand = new RelayCommand(param => Impulse(1), param => true);
-                return stopButtonCommand;
-            }
+            get { return stopButtonCommand.Value; }
         }
 
         private void Impulse(int channel)
