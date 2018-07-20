@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
@@ -127,7 +128,7 @@ namespace TimySimulator.ViewModel
 
             Results.Add(new Result
             {
-                BibNumber = Int32.Parse(BibNumber),
+                BibNumber = Int32.Parse(BibNumber, CultureInfo.InvariantCulture),
                 Channel = channel,
                 Time = stopWatch.Elapsed,
                 IsManualTime = true,
@@ -167,7 +168,7 @@ namespace TimySimulator.ViewModel
 
         private void DispatcherTimerTick(object sender, object e)
         {
-            ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.f");
+            ElapsedTime = stopWatch.Elapsed.ToString(@"hh\:mm\:ss\.f", CultureInfo.CurrentCulture);
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
