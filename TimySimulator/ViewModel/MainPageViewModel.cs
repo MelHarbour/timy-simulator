@@ -15,6 +15,8 @@ namespace TimySimulator.ViewModel
         private Lazy<RelayCommand> modeButtonCommand;
         private Lazy<RelayCommand> startButtonCommand;
         private Lazy<RelayCommand> stopButtonCommand;
+        private Lazy<RelayCommand> upButtonCommand;
+        private Lazy<RelayCommand> downButtonCommand;
         private string bibNumber = "1";
         private string elapsedTime;
         private Stopwatch stopWatch = new Stopwatch();
@@ -28,6 +30,8 @@ namespace TimySimulator.ViewModel
             modeButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => ModeButton(), param => true));
             startButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(0), param => true));
             stopButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(1), param => true));
+            upButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => UpButton(), param => true));
+            downButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => DownButton(), param => true));
             timer.Tick += DispatcherTimerTick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             stopWatch.Start();
@@ -49,12 +53,18 @@ namespace TimySimulator.ViewModel
         public ObservableCollection<Result> Results {
             get { return results.Value; }
         }
+        
+        public int FocussedResultId { get; set; }
 
         public ObservableCollection<Result> DisplayResults
         {
             get
             {
-                return new ObservableCollection<Result>(Results.OrderBy(x => x.ResultId));
+                return new ObservableCollection<Result>
+                    (
+                        Results.OrderBy(x => x.ResultId)
+                            .Where(x => x.ResultId >= FocussedResultId - 4 && x.ResultId <= FocussedResultId)
+                    );
             }
         }
 
@@ -99,15 +109,32 @@ namespace TimySimulator.ViewModel
             get { return stopButtonCommand.Value; }
         }
 
+        public RelayCommand UpButtonCommand
+        {
+            get { return upButtonCommand.Value; }
+        }
+
+        public RelayCommand DownButtonCommand
+        {
+            get { return downButtonCommand.Value; }
+        }
+
         private void Impulse(int channel)
         {
+            int maxResultId = 0;
+            if (Results.Count > 0)
+                maxResultId = Results.Select(x => x.ResultId).Max();
+
             Results.Add(new Result
             {
                 BibNumber = Int32.Parse(BibNumber),
                 Channel = channel,
                 Time = stopWatch.Elapsed,
-                IsManualTime = true
+                IsManualTime = true,
+                ResultId = maxResultId + 1
             });
+            if (FocussedResultId == maxResultId)
+                FocussedResultId++;
             OnPropertyChanged("DisplayResults");
         }
 
@@ -122,6 +149,20 @@ namespace TimySimulator.ViewModel
                 Mode = TimyMode.Normal;
             else
                 Mode = TimyMode.Memory;
+        }
+
+        private void UpButton()
+        {
+            if (FocussedResultId > 1)
+                FocussedResultId--;
+            OnPropertyChanged("DisplayResults");
+        }
+
+        private void DownButton()
+        {
+            if (FocussedResultId < Results.Select(x => x.ResultId).Max())
+                FocussedResultId++;
+            OnPropertyChanged("DisplayResults");
         }
 
         private void DispatcherTimerTick(object sender, object e)
