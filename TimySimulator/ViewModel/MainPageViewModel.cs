@@ -19,7 +19,7 @@ namespace TimySimulator.ViewModel
         private string elapsedTime;
         private Stopwatch stopWatch;
         private DispatcherTimer timer;
-        private ObservableCollection<Result> results;
+        private Lazy<ObservableCollection<Result>> results = new Lazy<ObservableCollection<Result>>();
         private TimyMode mode;
 
         public MainPageViewModel()
@@ -45,12 +45,7 @@ namespace TimySimulator.ViewModel
         }
 
         public ObservableCollection<Result> Results {
-            get
-            {
-                if (results == null)
-                    results = new ObservableCollection<Result>();
-                return results;
-            }
+            get { return results.Value; }
         }
 
         public ObservableCollection<Result> DisplayResults
