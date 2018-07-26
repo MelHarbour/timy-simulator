@@ -18,8 +18,10 @@ namespace TimySimulator.ViewModel
         private Lazy<RelayCommand> stopButtonCommand;
         private Lazy<RelayCommand> upButtonCommand;
         private Lazy<RelayCommand> downButtonCommand;
+        private Lazy<RelayCommand> stnButtonCommand;
         private string bibNumber = "1";
         private string elapsedTime;
+        private bool isEditingBibNumber;
         private Stopwatch stopWatch = new Stopwatch();
         private DispatcherTimer timer = new DispatcherTimer();
         private Lazy<ObservableCollection<Result>> results = new Lazy<ObservableCollection<Result>>();
@@ -33,6 +35,7 @@ namespace TimySimulator.ViewModel
             stopButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => Impulse(1), param => true));
             upButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => UpButton(), param => true));
             downButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => DownButton(), param => true));
+            stnButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => StnButton(), param => true));
             timer.Tick += DispatcherTimerTick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             stopWatch.Start();
@@ -56,16 +59,31 @@ namespace TimySimulator.ViewModel
         }
         
         public int FocussedResultId { get; set; }
+        public bool IsEditingBibNumber
+        {
+            get { return isEditingBibNumber; }
+            set { SetField(ref isEditingBibNumber, value); }
+        }
 
         public ObservableCollection<Result> DisplayResults
         {
             get
             {
-                return new ObservableCollection<Result>
-                    (
-                        Results.OrderBy(x => x.ResultId)
-                            .Where(x => x.ResultId >= FocussedResultId - 4 && x.ResultId <= FocussedResultId)
-                    );
+                if (Mode == TimyMode.Normal)
+                {
+                    return new ObservableCollection<Result>
+                        (
+                            Results.OrderBy(x => x.ResultId)
+                                .Where(x => x.ResultId >= FocussedResultId - 4 && x.ResultId <= FocussedResultId)
+                        );
+                }
+                else
+                {
+                    return new ObservableCollection<Result>
+                        (
+                            Results.Where(x => !x.IsSaved).OrderBy(x => x.ResultId)
+                        );
+                }
             }
         }
 
@@ -76,6 +94,19 @@ namespace TimySimulator.ViewModel
             {
                 SetField(ref mode, value);
                 OnPropertyChanged("ModeText");
+                OnPropertyChanged("DisplayResults");
+                OnPropertyChanged("ModeVisibility");
+            }
+        }
+
+        public Visibility ModeVisibility
+        {
+            get
+            {
+                if (Mode == TimyMode.Memory)
+                    return Visibility.Collapsed;
+                else
+                    return Visibility.Visible;
             }
         }
 
@@ -120,6 +151,11 @@ namespace TimySimulator.ViewModel
             get { return downButtonCommand.Value; }
         }
 
+        public RelayCommand StnButtonCommand
+        {
+            get { return stnButtonCommand.Value; }
+        }
+
         private void Impulse(int channel)
         {
             int maxResultId = 0;
@@ -132,7 +168,8 @@ namespace TimySimulator.ViewModel
                 Channel = channel,
                 Time = stopWatch.Elapsed,
                 IsManualTime = true,
-                ResultId = maxResultId + 1
+                ResultId = maxResultId + 1,
+                IsSaved = Mode == TimyMode.Normal
             });
             if (FocussedResultId == maxResultId)
                 FocussedResultId++;
@@ -164,6 +201,14 @@ namespace TimySimulator.ViewModel
             if (FocussedResultId < Results.Select(x => x.ResultId).Max())
                 FocussedResultId++;
             OnPropertyChanged("DisplayResults");
+        }
+
+        private void StnButton()
+        {
+            if (Results.Count > 0)
+            {
+                IsEditingBibNumber = true;
+            }
         }
 
         private void DispatcherTimerTick(object sender, object e)

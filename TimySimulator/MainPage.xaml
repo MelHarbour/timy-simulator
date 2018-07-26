@@ -49,6 +49,11 @@
             <Setter Property="FontFamily" Value="Courier New"/>
         </Style>
         <c:ManualBooleanConverter x:Key="ManualBooleanConverter"/>
+        <Storyboard x:Key="BlinkAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                 From="0" To="1" RepeatBehavior="Forever"
+                 AutoReverse="True" Duration="0:0:0.5"/>
+        </Storyboard>
     </Page.Resources>
     <Grid Background="DarkSlateGray">
         <Grid.ColumnDefinitions>
@@ -105,9 +110,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ModeText}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="STN"/>
-                <TextBlock Grid.Row="2" Grid.Column="2" Text="TIME"/>
-                <TextBlock Grid.Row="2" Grid.Column="3" Text="AKT"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="STN" Visibility="{Binding ModeVisibility}"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="TIME" Visibility="{Binding ModeVisibility}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="AKT" Visibility="{Binding ModeVisibility}"/>
             </Grid>
         </StackPanel>
         <Button Content="F0" Grid.Row="1" Grid.Column="0" Style="{StaticResource MiniButton}" Command="{Binding ModeButtonCommand}"/>
