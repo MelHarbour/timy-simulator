@@ -19,6 +19,7 @@ namespace TimySimulator.ViewModel
         private Lazy<RelayCommand> upButtonCommand;
         private Lazy<RelayCommand> downButtonCommand;
         private Lazy<RelayCommand> stnButtonCommand;
+        private Lazy<RelayCommand> okButtonCommand;
         private string bibNumber = "1";
         private string elapsedTime;
         private bool isEditingBibNumber;
@@ -36,6 +37,7 @@ namespace TimySimulator.ViewModel
             upButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => UpButton(), param => true));
             downButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => DownButton(), param => true));
             stnButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => StnButton(), param => true));
+            okButtonCommand = new Lazy<RelayCommand>(() => new RelayCommand(param => OkButton(), param => true));
             timer.Tick += DispatcherTimerTick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             stopWatch.Start();
@@ -156,6 +158,11 @@ namespace TimySimulator.ViewModel
             get { return stnButtonCommand.Value; }
         }
 
+        public RelayCommand OkButtonCommand
+        {
+            get { return okButtonCommand.Value; }
+        }
+
         private void Impulse(int channel)
         {
             int maxResultId = 0;
@@ -179,6 +186,19 @@ namespace TimySimulator.ViewModel
         private void NumberButton(string number)
         {
             BibNumber += number;
+        }
+
+        private void OkButton()
+        {
+            if (Mode == TimyMode.Memory)
+            {
+                var memoryResults = Results.Where(x => !x.IsSaved).OrderBy(x => x.ResultId);
+                if (memoryResults.Count() > 0)
+                {
+                    memoryResults.First().IsSaved = true;
+                    OnPropertyChanged("DisplayResults");
+                }
+            }
         }
 
         private void ModeButton()

@@ -138,8 +138,8 @@
         <Button Content="1" Grid.Row="7" Grid.Column="0" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="1" Background="Yellow"/>
         <Button Content="2" Grid.Row="7" Grid.Column="4" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="2" Background="Yellow"/>
         <Button Content="3" Grid.Row="7" Grid.Column="8" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="3" Background="Yellow"/>
-        <Button Content="OK" Grid.Row="8" Grid.Column="0" Style="{StaticResource RoundButton}" Background="LightGreen"/>
+        <Button Content="OK" Grid.Row="8" Grid.Column="0" Style="{StaticResource RoundButton}" Background="LightGreen" Command="{Binding OkButtonCommand}"/>
         <Button Content="0" Grid.Row="8" Grid.Column="4" Style="{StaticResource RoundButton}" Command="{Binding NumberButtonCommand}" CommandParameter="0" Background="Yellow"/>
-        <Button Content="OK" Grid.Row="8" Grid.Column="8" Style="{StaticResource RoundButton}" Background="Red"/>
+        <Button Content="OK" Grid.Row="8" Grid.Column="8" Style="{StaticResource RoundButton}" Command="{Binding OkButtonCommand}" Background="Red"/>
     </Grid>
 </Page>
