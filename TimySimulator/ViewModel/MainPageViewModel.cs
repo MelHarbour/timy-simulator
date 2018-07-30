@@ -98,6 +98,8 @@ namespace TimySimulator.ViewModel
                 OnPropertyChanged("ModeText");
                 OnPropertyChanged("DisplayResults");
                 OnPropertyChanged("ModeVisibility");
+                OnPropertyChanged("CopyStnText");
+                OnPropertyChanged("AktOkText");
             }
         }
 
@@ -120,6 +122,28 @@ namespace TimySimulator.ViewModel
                     return "NORM";
                 else
                     return "MEMO";
+            }
+        }
+
+        public string CopyStnText
+        {
+            get
+            {
+                if (Mode == TimyMode.Memory)
+                    return "COPY";
+                else
+                    return "STN";
+            }
+        }
+
+        public string AktOkText
+        {
+            get
+            {
+                if (Mode == TimyMode.Memory)
+                    return "OK";
+                else
+                    return "AKT";
             }
         }
 

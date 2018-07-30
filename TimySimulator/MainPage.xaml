@@ -110,9 +110,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding ModeText}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="STN" Visibility="{Binding ModeVisibility}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding CopyStnText}"/>
                 <TextBlock Grid.Row="2" Grid.Column="2" Text="TIME" Visibility="{Binding ModeVisibility}"/>
-                <TextBlock Grid.Row="2" Grid.Column="3" Text="AKT" Visibility="{Binding ModeVisibility}"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding AktOkText}"/>
             </Grid>
         </StackPanel>
         <Button Content="F0" Grid.Row="1" Grid.Column="0" Style="{StaticResource MiniButton}" Command="{Binding ModeButtonCommand}"/>
