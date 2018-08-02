@@ -209,7 +209,19 @@ namespace TimySimulator.ViewModel
 
         private void NumberButton(string number)
         {
-            BibNumber += number;
+            if (Mode == TimyMode.Normal)
+                BibNumber += number;
+            else
+            {
+                var currentResult = Results.Where(x => !x.IsSaved).OrderBy(x => x.ResultId)?.First();
+                if (currentResult != null)
+                {
+                    if (currentResult.BibNumberText.Length == 4)
+                        currentResult.BibNumberText = currentResult.BibNumberText.Substring(1);
+                    currentResult.BibNumberText += number;
+                    OnPropertyChanged("DisplayResults");
+                }
+            }
         }
 
         private void OkButton()

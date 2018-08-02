@@ -49,6 +49,7 @@
             <Setter Property="FontFamily" Value="Courier New"/>
         </Style>
         <c:ManualBooleanConverter x:Key="ManualBooleanConverter"/>
+        <c:SavedBooleanConverter x:Key="SavedBooleanConverter"/>
         <Storyboard x:Key="BlinkAnimation">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                  From="0" To="1" RepeatBehavior="Forever"
@@ -100,7 +101,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock FontFamily="Courier New" Text=" "/>
+                                <TextBlock FontFamily="Courier New" Text="{Binding IsSaved, Converter={StaticResource SavedBooleanConverter}}"/>
                                 <TextBlock FontFamily="Courier New" Text="{Binding BibNumber}" Padding="8,0,8,0"/>
                                 <TextBlock FontFamily="Courier New" Text="{Binding Channel}"/>
                                 <TextBlock FontFamily="Courier New" Text="{Binding IsManualTime, Converter={StaticResource ManualBooleanConverter}}"/>
